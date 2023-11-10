@@ -18,7 +18,7 @@ export class CountryAbbreviationController {
   }
 
   @Get(':nameOrCode')
-  findByName(@Param('nameOrCode') nameOrCode: string) {
+  findOne(@Param('nameOrCode') nameOrCode: string) {
     return this.countryAbbreviationService.findOne(nameOrCode);
   }
 }
