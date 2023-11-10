@@ -7,6 +7,7 @@ import { CountriesByCitiesModule } from 'src/countries-by-cities/countries-by-ci
 import { CountriesByContinentsModule } from './countries-by-continents/countries-by-continents.module';
 import { CountriesByCurrencyCodesModule } from './countries-by-currency-codes/countries-by-currency-codes.module';
 import { CountriesByCurrencyNamesModule } from './countries-by-currency-names/countries-by-currency-names.module';
+import { CountriesFlagsModule } from './countries-flags/countries-flags.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CountriesByCurrencyNamesModule } from './countries-by-currency-names/co
     CountriesByContinentsModule,
     CountriesByCurrencyCodesModule,
     CountriesByCurrencyNamesModule,
+    CountriesFlagsModule,
   ],
   controllers: [],
   providers: [],
