@@ -10,6 +10,8 @@ import { CountriesByCurrencyNamesModule } from './countries-by-currency-names/co
 import { CountriesFlagsModule } from './countries-flags/countries-flags.module';
 import { CountriesByGeoCoordinatesModule } from './countries-by-geo-coordinates/countries-by-geo-coordinates.module';
 import { CountriesByLanguagesModule } from './countries-by-languages/countries-by-languages.module';
+import { CountriesByGovernmentTypeModule } from './countries-by-government-type/countries-by-government-type.module';
+import { CountriesByGovernmentTypeModule } from './countries-by-government-type/countries-by-government-type.module';
 
 @Module({
   imports: [
@@ -24,6 +26,7 @@ import { CountriesByLanguagesModule } from './countries-by-languages/countries-b
     CountriesFlagsModule,
     CountriesByGeoCoordinatesModule,
     CountriesByLanguagesModule,
+    CountriesByGovernmentTypeModule,
   ],
   controllers: [],
   providers: [],
