@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { CountriesByAlphabetLettersService } from './countries-by-alphabet-letters.service';
 
-@Controller('countries-by-alphabet-letters')
+@Controller('alphabet-letters')
 export class CountriesByAlphabetLettersController {
   constructor(
     private readonly countriesByAlphabetLettersService: CountriesByAlphabetLettersService,
