@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { CountryAbbreviationService } from './country-abbreviation.service';
-import { CountryAbbreviationController } from './country-abbreviation.controller';
+import { CountryAbbreviationService } from './countries-abbreviation.service';
+import { CountryAbbreviationController } from './countries-abbreviation.controller';
 
 @Module({
   controllers: [CountryAbbreviationController],

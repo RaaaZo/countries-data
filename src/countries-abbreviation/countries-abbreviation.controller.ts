@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { CountryAbbreviationService } from './country-abbreviation.service';
+import { CountryAbbreviationService } from './countries-abbreviation.service';
 
 @Controller('country-abbreviation')
 export class CountryAbbreviationController {

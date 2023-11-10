@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { CountryByNameService } from './country-by-name.service';
+import { CountryByNameService } from './countries-by-name.service';
 
 @Controller('country-by-name')
 export class CountryByNameController {
