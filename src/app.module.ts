@@ -4,6 +4,7 @@ import { CountryAbbreviationModule } from './countries-abbreviation/countries-ab
 import { CountriesByAlphabetLettersModule } from './countries-by-alphabet-letters/countries-by-alphabet-letters.module';
 import { CountriesByCapitalCityModule } from './countries-by-capital-city/countries-by-capital-city.module';
 import { CountriesByCitiesModule } from 'src/countries-by-cities/countries-by-cities.module';
+import { CountriesByContinentsModule } from './countries-by-continents/countries-by-continents.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { CountriesByCitiesModule } from 'src/countries-by-cities/countries-by-ci
     CountriesByAlphabetLettersModule,
     CountriesByCapitalCityModule,
     CountriesByCitiesModule,
+    CountriesByContinentsModule,
   ],
   controllers: [],
   providers: [],
