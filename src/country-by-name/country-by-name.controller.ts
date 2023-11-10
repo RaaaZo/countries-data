@@ -6,7 +6,7 @@ export class CountryByNameController {
   constructor(private readonly countryByNameService: CountryByNameService) {}
 
   @Get()
-  findAll(@Query('name') name: string) {
+  findAll(@Query('name') name?: string) {
     const params = {
       name,
     };

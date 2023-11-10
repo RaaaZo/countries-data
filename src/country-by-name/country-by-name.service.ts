@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import countriesByName from '../database/country-by-name.json';
 
 type TFindAllQueryParams = {
-  name: string;
+  name?: string;
 };
 
 @Injectable()
