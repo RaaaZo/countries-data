@@ -9,6 +9,7 @@ import { CountriesByCurrencyCodesModule } from './countries-by-currency-codes/co
 import { CountriesByCurrencyNamesModule } from './countries-by-currency-names/countries-by-currency-names.module';
 import { CountriesFlagsModule } from './countries-flags/countries-flags.module';
 import { CountriesByGeoCoordinatesModule } from './countries-by-geo-coordinates/countries-by-geo-coordinates.module';
+import { CountriesByLanguagesModule } from './countries-by-languages/countries-by-languages.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CountriesByGeoCoordinatesModule } from './countries-by-geo-coordinates/
     CountriesByCurrencyNamesModule,
     CountriesFlagsModule,
     CountriesByGeoCoordinatesModule,
+    CountriesByLanguagesModule,
   ],
   controllers: [],
   providers: [],
