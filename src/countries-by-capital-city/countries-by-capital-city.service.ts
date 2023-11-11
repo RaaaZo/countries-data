@@ -4,13 +4,16 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import countryByCapitalCity from '../database/country-by-capital-city.json';
+import { TPaginationParams } from 'src/common/types/pagination';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
+import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
 
 type TCountryByCapitalCityDto = {
   country: string;
   city: string | null;
 };
 
-type TFindAllQueryParams = {
+type TFindAllQueryParams = TPaginationParams & {
   name?: string;
   capital?: string;
 };
@@ -19,8 +22,13 @@ const NO_ITEMS_LENGTH = 0;
 
 @Injectable()
 export class CountriesByCapitalCityService {
-  findAll({ capital, name }: TFindAllQueryParams) {
-    let filteredCountry: TCountryByCapitalCityDto[] = [];
+  findAll({
+    capital,
+    name,
+    limit = DEFAULT_LIMIT,
+    page = DEFAULT_PAGE,
+  }: TFindAllQueryParams) {
+    let filteredCountry: TCountryByCapitalCityDto[] = countryByCapitalCity;
 
     if (capital) {
       filteredCountry = countryByCapitalCity.filter(
@@ -35,11 +43,13 @@ export class CountriesByCapitalCityService {
       );
     }
 
-    if (capital || name) {
-      return filteredCountry;
-    }
+    const paginatedData = transformIntoPaginatedChunk(
+      filteredCountry,
+      page,
+      limit,
+    );
 
-    return countryByCapitalCity;
+    return paginatedData;
   }
 
   findOne(nameOrCapital: string) {

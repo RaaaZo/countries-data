@@ -4,8 +4,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import countryByAbbreviation from '../database/country-by-abbreviation.json';
+import { TPaginationParams } from 'src/common/types/pagination';
+import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
 
-type TFindAllQueryParams = {
+type TFindAllQueryParams = TPaginationParams & {
   name?: string;
   code?: string;
 };
@@ -14,28 +17,33 @@ const NO_ITEMS_LENGTH = 0;
 
 @Injectable()
 export class CountryAbbreviationService {
-  findAll({ code, name }: TFindAllQueryParams) {
-    if (code) {
-      const filteredCountry = countryByAbbreviation.filter(
-        ({ abbreviation }) => {
-          return abbreviation.toLowerCase().includes(code.toLowerCase());
-        },
-      );
+  findAll({
+    code,
+    name,
+    limit = DEFAULT_LIMIT,
+    page = DEFAULT_PAGE,
+  }: TFindAllQueryParams) {
+    const filteredCountryByAbbreviation = countryByAbbreviation;
 
-      return filteredCountry;
+    if (code) {
+      countryByAbbreviation.filter(({ abbreviation }) => {
+        return abbreviation.toLowerCase().includes(code.toLowerCase());
+      });
     }
 
     if (name) {
-      const filteredCountry = countryByAbbreviation.filter(
-        ({ country: countryName }) => {
-          return countryName.toLowerCase().includes(name.toLowerCase());
-        },
-      );
-
-      return filteredCountry;
+      countryByAbbreviation.filter(({ country: countryName }) => {
+        return countryName.toLowerCase().includes(name.toLowerCase());
+      });
     }
 
-    return countryByAbbreviation;
+    const paginatedData = transformIntoPaginatedChunk(
+      filteredCountryByAbbreviation,
+      page,
+      limit,
+    );
+
+    return paginatedData;
   }
 
   findOne(nameOrCode: string) {

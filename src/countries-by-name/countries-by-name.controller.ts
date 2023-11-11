@@ -6,12 +6,18 @@ export class CountryByNameController {
   constructor(private readonly countryByNameService: CountryByNameService) {}
 
   @Get()
-  findAll(@Query('name') name?: string) {
-    const params = {
+  findAll(
+    @Query('name') name?: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
+  ) {
+    const queryParams = {
       name,
+      page,
+      limit,
     };
 
-    return this.countryByNameService.findAll(params);
+    return this.countryByNameService.findAll(queryParams);
   }
 
   @Get(':name')

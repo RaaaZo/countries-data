@@ -4,15 +4,23 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import countryByPopulation from '../database/country-by-population.json';
+import { TPaginationParams } from 'src/common/types/pagination';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
+import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
 
-type TFindAllQueryParams = {
+type TFindAllQueryParams = TPaginationParams & {
   countryName?: string;
   population?: number;
 };
 
 @Injectable()
 export class CountriesByPopulationService {
-  findAll({ countryName, population }: TFindAllQueryParams) {
+  findAll({
+    countryName,
+    population,
+    limit = DEFAULT_LIMIT,
+    page = DEFAULT_PAGE,
+  }: TFindAllQueryParams) {
     let countries = countryByPopulation;
 
     if (countryName) {
@@ -27,7 +35,9 @@ export class CountriesByPopulationService {
       );
     }
 
-    return countries;
+    const paginatedData = transformIntoPaginatedChunk(countries, page, limit);
+
+    return paginatedData;
   }
 
   findOne(countryNameOrPopulation: string) {

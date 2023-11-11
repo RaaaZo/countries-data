@@ -11,10 +11,14 @@ export class CountriesByGovernmentTypeController {
   findAll(
     @Query('countryName') countryName: string,
     @Query('governmentType') governmentType: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ) {
     const queryParams = {
       countryName,
       governmentType,
+      page,
+      limit,
     };
 
     return this.countriesByGovernmentTypeService.findAll(queryParams);

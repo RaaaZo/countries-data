@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import countryByCurrencyCode from '../database/country-by-currency-code.json';
+import { TPaginationParams } from 'src/common/types/pagination';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
+import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
 
-type TFindAllCountriesByCurrencyCodesParams = {
+type TFindAllCountriesByCurrencyCodesParams = TPaginationParams & {
   countryName?: string;
   currencyCode?: string;
 };
@@ -11,6 +14,8 @@ export class CountriesByCurrencyCodesService {
   findAll({
     countryName,
     currencyCode,
+    limit = DEFAULT_LIMIT,
+    page = DEFAULT_PAGE,
   }: TFindAllCountriesByCurrencyCodesParams) {
     let filteredCountries = countryByCurrencyCode;
 
@@ -27,7 +32,13 @@ export class CountriesByCurrencyCodesService {
       );
     }
 
-    return filteredCountries;
+    const paginatedData = transformIntoPaginatedChunk(
+      filteredCountries,
+      page,
+      limit,
+    );
+
+    return paginatedData;
   }
 
   findOne(currencyCodeOrCountryName: string) {

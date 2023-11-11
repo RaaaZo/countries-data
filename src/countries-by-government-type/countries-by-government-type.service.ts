@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import countryByGovernmentType from '../database/country-by-government-type.json';
+import { TPaginationParams } from 'src/common/types/pagination';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
+import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
 
-type TFindAllCountriesByGovernmentTypeParams = {
+type TFindAllCountriesByGovernmentTypeParams = TPaginationParams & {
   countryName?: string;
   governmentType?: string;
 };
@@ -11,6 +14,8 @@ export class CountriesByGovernmentTypeService {
   findAll({
     countryName,
     governmentType,
+    limit = DEFAULT_LIMIT,
+    page = DEFAULT_PAGE,
   }: TFindAllCountriesByGovernmentTypeParams) {
     let filteredCountries = countryByGovernmentType;
 
@@ -27,7 +32,13 @@ export class CountriesByGovernmentTypeService {
       );
     }
 
-    return filteredCountries;
+    const paginatedData = transformIntoPaginatedChunk(
+      filteredCountries,
+      page,
+      limit,
+    );
+
+    return paginatedData;
   }
 
   findOne(countryNameOrGovernmentType: string) {

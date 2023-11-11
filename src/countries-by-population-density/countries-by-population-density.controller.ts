@@ -11,8 +11,15 @@ export class CountriesByPopulationDensityController {
   findAll(
     @Query('countryName') countryName: string,
     @Query('populationDensity') populationDensity: number,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ) {
-    const queryParams = { countryName, populationDensity };
+    const queryParams = {
+      countryName,
+      populationDensity,
+      page,
+      limit,
+    };
 
     return this.countriesByPopulationDensityService.findAll(queryParams);
   }

@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountriesFlagsService } from './countries-flags.service';
 
 @Controller('flags')
@@ -6,8 +6,13 @@ export class CountriesFlagsController {
   constructor(private readonly countriesFlagsService: CountriesFlagsService) {}
 
   @Get()
-  findAll() {
-    return this.countriesFlagsService.findAll();
+  findAll(@Query('page') page?: number, @Query('limit') limit?: number) {
+    const queryParams = {
+      page,
+      limit,
+    };
+
+    return this.countriesFlagsService.findAll(queryParams);
   }
 
   @Get(':countryName')

@@ -11,10 +11,14 @@ export class CountriesByContinentsController {
   findAll(
     @Query('countryName') countryName?: string,
     @Query('continent') continent?: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ) {
     const queryParams = {
       countryName,
       continent,
+      page,
+      limit,
     };
 
     return this.countriesByContinentsService.findAll(queryParams);

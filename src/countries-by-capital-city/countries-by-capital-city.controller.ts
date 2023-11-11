@@ -8,10 +8,17 @@ export class CountriesByCapitalCityController {
   ) {}
 
   @Get()
-  findAll(@Query('name') name?: string, @Query('capital') capital?: string) {
+  findAll(
+    @Query('name') name?: string,
+    @Query('capital') capital?: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
+  ) {
     const queryParams = {
       name,
       capital,
+      page,
+      limit,
     };
 
     return this.countriesByCapitalCityService.findAll(queryParams);

@@ -11,10 +11,14 @@ export class CountriesByCurrencyCodesController {
   findAll(
     @Query('countryName') countryName?: string,
     @Query('currencyCode') currencyCode?: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ) {
     const queryParams = {
       countryName,
       currencyCode,
+      page,
+      limit,
     };
 
     return this.countriesByCurrencyCodesService.findAll(queryParams);

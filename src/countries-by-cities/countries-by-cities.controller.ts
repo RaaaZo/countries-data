@@ -11,10 +11,14 @@ export class CountriesByCitiesController {
   findAll(
     @Query('countryName') countryName?: string,
     @Query('cityName') cityName?: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ) {
     const queryParams = {
       countryName,
       cityName,
+      page,
+      limit,
     };
 
     return this.countriesByCitiesService.findAll(queryParams);

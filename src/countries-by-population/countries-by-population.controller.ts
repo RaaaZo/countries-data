@@ -11,8 +11,15 @@ export class CountriesByPopulationController {
   findAll(
     @Query('countryName') countryName: string,
     @Query('population') population: number,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ) {
-    const queryParams = { countryName, population };
+    const queryParams = {
+      countryName,
+      population,
+      page,
+      limit,
+    };
 
     return this.countriesByPopulationService.findAll(queryParams);
   }

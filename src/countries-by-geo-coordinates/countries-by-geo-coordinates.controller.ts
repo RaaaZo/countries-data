@@ -8,9 +8,15 @@ export class CountriesByGeoCoordinatesController {
   ) {}
 
   @Get()
-  findAll(@Query('countryName') countryName?: string) {
+  findAll(
+    @Query('countryName') countryName?: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
+  ) {
     const queryParams = {
       countryName,
+      page,
+      limit,
     };
 
     return this.countriesByGeoCoordinatesService.findAll(queryParams);

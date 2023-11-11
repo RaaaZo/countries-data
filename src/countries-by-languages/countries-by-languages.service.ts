@@ -1,14 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import countriesByLanguages from '../database/country-by-languages.json';
+import { TPaginationParams } from 'src/common/types/pagination';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
+import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
 
-type TFindAllCountriesByLanguagesParams = {
+type TFindAllCountriesByLanguagesParams = TPaginationParams & {
   countryName?: string;
   languageName?: string;
 };
 
 @Injectable()
 export class CountriesByLanguagesService {
-  findAll({ countryName, languageName }: TFindAllCountriesByLanguagesParams) {
+  findAll({
+    countryName,
+    languageName,
+    limit = DEFAULT_LIMIT,
+    page = DEFAULT_PAGE,
+  }: TFindAllCountriesByLanguagesParams) {
     let filteredCountries = countriesByLanguages;
 
     if (countryName) {
@@ -25,7 +33,13 @@ export class CountriesByLanguagesService {
       );
     }
 
-    return filteredCountries;
+    const paginatedData = transformIntoPaginatedChunk(
+      filteredCountries,
+      page,
+      limit,
+    );
+
+    return paginatedData;
   }
 
   findOne(countryNameOrLanguageName: string) {

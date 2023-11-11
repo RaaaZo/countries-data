@@ -1,13 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import countriesByGeoCoordinates from '../database/country-by-geo-coordinates.json';
+import { TPaginationParams } from 'src/common/types/pagination';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
+import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
 
-type TFindAllCountriesByGeoCoordinatesParams = {
+type TFindAllCountriesByGeoCoordinatesParams = TPaginationParams & {
   countryName?: string;
 };
 
 @Injectable()
 export class CountriesByGeoCoordinatesService {
-  findAll({ countryName }: TFindAllCountriesByGeoCoordinatesParams) {
+  findAll({
+    countryName,
+    limit = DEFAULT_LIMIT,
+    page = DEFAULT_PAGE,
+  }: TFindAllCountriesByGeoCoordinatesParams) {
     let filteredCountries = countriesByGeoCoordinates;
 
     if (countryName) {
@@ -16,7 +23,13 @@ export class CountriesByGeoCoordinatesService {
       );
     }
 
-    return filteredCountries;
+    const paginatedData = transformIntoPaginatedChunk(
+      filteredCountries,
+      page,
+      limit,
+    );
+
+    return paginatedData;
   }
 
   findOne(countryName: string) {

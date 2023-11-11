@@ -1,22 +1,35 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import countriesByName from '../database/country-by-name.json';
+import { TPaginationParams } from 'src/common/types/pagination';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
+import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
 
-type TFindAllQueryParams = {
+type TFindAllQueryParams = TPaginationParams & {
   name?: string;
 };
 
 @Injectable()
 export class CountryByNameService {
-  findAll({ name }: TFindAllQueryParams) {
+  findAll({
+    name,
+    limit = DEFAULT_LIMIT,
+    page = DEFAULT_PAGE,
+  }: TFindAllQueryParams) {
+    const filteredCountries = countriesByName;
+
     if (name) {
-      const filteredCountries = countriesByName.filter(({ country }) => {
+      countriesByName.filter(({ country }) => {
         return country.toLowerCase().includes(name.toLowerCase());
       });
-
-      return filteredCountries;
     }
 
-    return countriesByName;
+    const paginatedData = transformIntoPaginatedChunk(
+      filteredCountries,
+      page,
+      limit,
+    );
+
+    return paginatedData;
   }
 
   findOne(name: string) {
