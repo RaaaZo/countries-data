@@ -4,11 +4,11 @@ export const transformIntoPaginatedChunk = <T>(
   limit: number,
 ) => {
   const totalItems = array.length;
-  const offset = (page - 1) * limit;
-  const totalPages = Math.ceil(totalItems / limit);
-  const hasMore = page < totalPages;
+  const offset = (Number(page) - 1) * Number(limit);
+  const totalPages = Math.ceil(totalItems / Number(limit));
+  const hasMore = Number(page) < totalPages;
 
-  const paginatedData = array.slice(offset, offset + limit);
+  const paginatedData = array.slice(offset, offset + Number(limit));
 
   return {
     pagination: {
