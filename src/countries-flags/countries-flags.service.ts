@@ -4,12 +4,12 @@ import { TPaginationParams } from 'src/common/types/pagination';
 import { transformIntoPaginatedChunk } from 'src/common/utils/transformIntoPaginatedChunk';
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from 'src/common/constants/pagination';
 
-type TSingleCountryFlagDto = {
+export type TSingleCountryFlagDto = {
   country: string;
   flagBase64: string | null;
 };
 
-type TCountriesFlagsDto = TSingleCountryFlagDto[];
+export type TCountriesFlagsDto = TSingleCountryFlagDto[];
 
 type TFindAllQueryParams = TPaginationParams;
 

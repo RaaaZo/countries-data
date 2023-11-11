@@ -13,6 +13,7 @@ import { CountriesByLanguagesModule } from './countries-by-languages/countries-b
 import { CountriesByGovernmentTypeModule } from './countries-by-government-type/countries-by-government-type.module';
 import { CountriesByPopulationModule } from './countries-by-population/countries-by-population.module';
 import { CountriesByPopulationDensityModule } from './countries-by-population-density/countries-by-population-density.module';
+import { CountriesBulkedDataModule } from './countries-bulked-data/countries-bulked-data.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { CountriesByPopulationDensityModule } from './countries-by-population-de
     CountriesByGovernmentTypeModule,
     CountriesByPopulationModule,
     CountriesByPopulationDensityModule,
+    CountriesBulkedDataModule,
   ],
   controllers: [],
   providers: [],
