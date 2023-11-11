@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountriesByPopulationService } from './countries-by-population.service';
 
-@Controller('countries-by-population')
+@Controller('population')
 export class CountriesByPopulationController {
   constructor(
     private readonly countriesByPopulationService: CountriesByPopulationService,

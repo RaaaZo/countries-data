@@ -12,6 +12,7 @@ import { CountriesByGeoCoordinatesModule } from './countries-by-geo-coordinates/
 import { CountriesByLanguagesModule } from './countries-by-languages/countries-by-languages.module';
 import { CountriesByGovernmentTypeModule } from './countries-by-government-type/countries-by-government-type.module';
 import { CountriesByPopulationModule } from './countries-by-population/countries-by-population.module';
+import { CountriesByPopulationDensityModule } from './countries-by-population-density/countries-by-population-density.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CountriesByPopulationModule } from './countries-by-population/countries
     CountriesByLanguagesModule,
     CountriesByGovernmentTypeModule,
     CountriesByPopulationModule,
+    CountriesByPopulationDensityModule,
   ],
   controllers: [],
   providers: [],
