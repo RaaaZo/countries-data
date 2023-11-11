@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { CountriesByCurrencyCodesService } from './countries-by-currency-codes.service';
 
 @Controller('currency-codes')
@@ -11,8 +11,8 @@ export class CountriesByCurrencyCodesController {
   findAll(
     @Query('countryName') countryName?: string,
     @Query('currencyCode') currencyCode?: string,
-    @Query('page') page?: number,
-    @Query('limit') limit?: number,
+    @Query('page', ParseIntPipe) page?: number,
+    @Query('limit', ParseIntPipe) limit?: number,
   ) {
     const queryParams = {
       countryName,

@@ -23,8 +23,8 @@ export class CountriesBulkedDataService {
     let filteredCountries = createCountriesBulkedData;
 
     if (countryName) {
-      filteredCountries = filteredCountries.filter(
-        ({ country }) => country === countryName,
+      filteredCountries = filteredCountries.filter(({ country }) =>
+        country.toLowerCase().includes(countryName.toLowerCase()),
       );
     }
 

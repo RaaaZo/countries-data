@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { CountriesBulkedDataService } from './countries-bulked-data.service';
 
 @Controller('data')
@@ -9,8 +9,8 @@ export class CountriesBulkedDataController {
 
   @Get()
   findAll(
-    @Query('page') page?: number,
-    @Query('limit') limit?: number,
+    @Query('page', ParseIntPipe) page?: number,
+    @Query('limit', ParseIntPipe) limit?: number,
     @Query('countryName') countryName?: string,
   ) {
     const queryParams = {
