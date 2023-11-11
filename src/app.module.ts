@@ -11,7 +11,7 @@ import { CountriesFlagsModule } from './countries-flags/countries-flags.module';
 import { CountriesByGeoCoordinatesModule } from './countries-by-geo-coordinates/countries-by-geo-coordinates.module';
 import { CountriesByLanguagesModule } from './countries-by-languages/countries-by-languages.module';
 import { CountriesByGovernmentTypeModule } from './countries-by-government-type/countries-by-government-type.module';
-import { CountriesByGovernmentTypeModule } from './countries-by-government-type/countries-by-government-type.module';
+import { CountriesByPopulationModule } from './countries-by-population/countries-by-population.module';
 
 @Module({
   imports: [
@@ -27,6 +27,7 @@ import { CountriesByGovernmentTypeModule } from './countries-by-government-type/
     CountriesByGeoCoordinatesModule,
     CountriesByLanguagesModule,
     CountriesByGovernmentTypeModule,
+    CountriesByPopulationModule,
   ],
   controllers: [],
   providers: [],
