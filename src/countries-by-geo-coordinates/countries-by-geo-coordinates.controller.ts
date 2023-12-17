@@ -1,5 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountriesByGeoCoordinatesService } from './countries-by-geo-coordinates.service';
+import { OptionalIntPipe } from 'src/pipes/OptionalIntPipe';
 
 @Controller('coordinates')
 export class CountriesByGeoCoordinatesController {
@@ -10,8 +11,8 @@ export class CountriesByGeoCoordinatesController {
   @Get()
   findAll(
     @Query('countryName') countryName?: string,
-    @Query('page') page?: number,
-    @Query('limit') limit?: number,
+    @Query('page', OptionalIntPipe) page?: number,
+    @Query('limit', OptionalIntPipe) limit?: number,
   ) {
     const queryParams = {
       countryName,

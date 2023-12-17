@@ -1,5 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountryByNameService } from './countries-by-name.service';
+import { OptionalIntPipe } from 'src/pipes/OptionalIntPipe';
 
 @Controller('name')
 export class CountryByNameController {
@@ -8,8 +9,8 @@ export class CountryByNameController {
   @Get('/test')
   findAll(
     @Query('name') name?: string,
-    @Query('page') page?: number,
-    @Query('limit') limit?: number,
+    @Query('page', OptionalIntPipe) page?: number,
+    @Query('limit', OptionalIntPipe) limit?: number,
   ) {
     const queryParams = {
       name,

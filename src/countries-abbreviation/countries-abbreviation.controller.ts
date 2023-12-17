@@ -1,5 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountryAbbreviationService } from './countries-abbreviation.service';
+import { OptionalIntPipe } from 'src/pipes/OptionalIntPipe';
 
 @Controller('abbreviations')
 export class CountryAbbreviationController {
@@ -11,8 +12,8 @@ export class CountryAbbreviationController {
   findAll(
     @Query('name') name?: string,
     @Query('code') code?: string,
-    @Query('page') page?: number,
-    @Query('limit') limit?: number,
+    @Query('page', OptionalIntPipe) page?: number,
+    @Query('limit', OptionalIntPipe) limit?: number,
   ) {
     const queryParams = {
       name,

@@ -1,5 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountriesBulkedDataService } from './countries-bulked-data.service';
+import { OptionalIntPipe } from 'src/pipes/OptionalIntPipe';
 
 @Controller('data')
 export class CountriesBulkedDataController {
@@ -9,8 +10,8 @@ export class CountriesBulkedDataController {
 
   @Get()
   findAll(
-    @Query('page') page?: number,
-    @Query('limit') limit?: number,
+    @Query('page', OptionalIntPipe) page?: number,
+    @Query('limit', OptionalIntPipe) limit?: number,
     @Query('countryName') countryName?: string,
   ) {
     const queryParams = {
