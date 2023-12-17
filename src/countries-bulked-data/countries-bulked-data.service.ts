@@ -42,7 +42,7 @@ export class CountriesBulkedDataService {
       return new BadRequestException('Country name is required');
 
     const country = createCountriesBulkedData.find(
-      ({ country }) => country === countryName,
+      ({ country }) => country.toLowerCase() === countryName.toLowerCase(),
     );
 
     if (!country) return new NotFoundException('Country not found');

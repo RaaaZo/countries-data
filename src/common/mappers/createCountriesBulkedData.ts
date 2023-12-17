@@ -11,39 +11,39 @@ import countriesCoordinates from '../../database/country-by-geo-coordinates.json
 
 export const createCountriesBulkedData = countriesName.map(({ country }) => {
   const countryCoordinates = countriesCoordinates?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   );
 
   const countryPopulation = countriesPopulation?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   )?.population;
 
   const countryCapital = countriesCapital?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   )?.city;
 
   const countryCurrencyName = countriesCurrency?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   )?.currencyName;
 
   const countryCurrencyCode = countriesCurrencyCode?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   )?.currencyCode;
 
   const countryPopulationDensity = countriesPopulationDensity?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   )?.density;
 
   const countryAbbreviation = countriesAbbreviation?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   )?.abbreviation;
 
   const countryLanguage = countriesLanguage?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   )?.languages;
 
   const countryCities = countriesCities?.find(
-    ({ country }) => country === country,
+    ({ country: innerCountry }) => country === innerCountry,
   )?.cities;
 
   const mergedData = {

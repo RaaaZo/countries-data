@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountriesByGeoCoordinatesService } from './countries-by-geo-coordinates.service';
 
 @Controller('coordinates')
@@ -10,8 +10,8 @@ export class CountriesByGeoCoordinatesController {
   @Get()
   findAll(
     @Query('countryName') countryName?: string,
-    @Query('page', ParseIntPipe) page?: number,
-    @Query('limit', ParseIntPipe) limit?: number,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ) {
     const queryParams = {
       countryName,

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountryAbbreviationService } from './countries-abbreviation.service';
 
 @Controller('abbreviations')
@@ -11,8 +11,8 @@ export class CountryAbbreviationController {
   findAll(
     @Query('name') name?: string,
     @Query('code') code?: string,
-    @Query('page', ParseIntPipe) page?: number,
-    @Query('limit', ParseIntPipe) limit?: number,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
   ) {
     const queryParams = {
       name,

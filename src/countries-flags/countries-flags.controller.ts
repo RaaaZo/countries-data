@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CountriesFlagsService } from './countries-flags.service';
 
 @Controller('flags')
@@ -6,10 +6,7 @@ export class CountriesFlagsController {
   constructor(private readonly countriesFlagsService: CountriesFlagsService) {}
 
   @Get()
-  findAll(
-    @Query('page', ParseIntPipe) page?: number,
-    @Query('limit', ParseIntPipe) limit?: number,
-  ) {
+  findAll(@Query('page') page?: number, @Query('limit') limit?: number) {
     const queryParams = {
       page,
       limit,
